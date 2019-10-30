@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flix</title>
+    <title>FreshFlixz</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <header>
+      <h1>FreshFlixz</h1>
+    </header>
     <%= yield %>
+    <footer>
+      <p>
+        Copyright &copy; <%= Time.now.year %>
+        <%= link_to  "andrewtalle", 'https://github.com/ogAndrew' %>
+      </p>
+    </footer>
   </body>
 </html>
