@@ -32,4 +32,12 @@ class Movie < ApplicationRecord
   def self.recently_added
     order("created_at desc").limit(3)
   end
+
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
+
+  def average_stars_as_percent
+    (self.average_stars / 5.0) * 100
+  end
 end
