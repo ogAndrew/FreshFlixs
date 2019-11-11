@@ -7,6 +7,7 @@
   <p>
     <%= @user.created_at.strftime("%B %Y") %>
   </p>
+
   <% if current_user?(@user) %>
     <div class="actions">
       <%= link_to  "Edit Account", edit_user_path(@user), class: "button edit" %>
@@ -15,4 +16,30 @@
                     class: "button delete" %>
     </div>
   <% end %>
+  <% if @reviews.present? %>
+    <h3>Reviews</h3>
+    <% @reviews.each do |review| %>
+      <div class="review">
+        <div class="details">
+        <%= profile_image(review.user, 35) %>
+          <span class="title">
+            <%= link_to review.movie.title, review.movie %>
+          </span>
+          <%= render "shared/stars", percent: review.stars_as_percent %>
+          <span class="date">
+            <%= time_ago_in_words(review.created_at) %> ago
+          </span>
+          <p>
+            <%= review.comment %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <h3>Favorite Movies</h3>
+    <div class="favorite-movies">
+      <% @favorite_movies.each do |movie| %>
+        <%= link_to image_tag(movie.image_file_name), movie %>
+      <% end %>
+    </div>
 </section>
